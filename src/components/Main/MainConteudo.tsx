@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Row, Col, Form } from 'react-bootstrap';
 import Conteudo, { StyledRow } from './MainStyled';
 import StyledForm, { FormGroup, FormInput, SubmitButton } from '../components/Formulario/Formulario';
 import { ButtomDefaultStyled } from '../components/ButtomDefault/ButtomDefaultStyled';
 import { v4 as uuid } from 'uuid';
-
 
 interface TaskType {
     taskId: string;
@@ -22,11 +22,21 @@ function MenuConteudo() {
     const [taskDesc, setTaskDesc] = useState('');
     const [tasks, setTasks] = useState<TaskType[]>([]);
     const [editId, setEditId] = useState<string | null>(null);
-    const [submissionLog, setSubmissionLog] = useState<SubmissionType[]>([]); // Usando o tipo definido para os logs de submissão
+    const [submissionLog, setSubmissionLog] = useState<SubmissionType[]>([]);
+    const apiUrl = "http://localhost:3000/tasks";
 
     useEffect(() => {
-        console.table(submissionLog);
-    }, [submissionLog]);
+        fetchTasks();
+    }, []);
+
+    const fetchTasks = async () => {
+        try {
+            const response = await axios.get(apiUrl);
+            setTasks(response.data);
+        } catch (error) {
+            console.error("Failed to fetch tasks", error);
+        }
+    };
 
     function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
         setTaskName(event.target.value);
@@ -40,33 +50,80 @@ function MenuConteudo() {
         event.preventDefault();
         if (!taskName || !taskDesc) return;
 
-        const newTask = editId ? tasks.map(task => {
-            if (task.taskId === editId) {
-                return { ...task, taskName, taskDesc };
-            }
-            return task;
-        }) : [...tasks, { taskId: uuid(), taskName, taskDesc }];
+        const taskData = { taskName, taskDesc };
+        const method = editId ? 'put' : 'post';
+        const url = editId ? `${apiUrl}/${editId}` : apiUrl;
 
-        setTasks(newTask);
+        axios[method](url, taskData)
+            .then(response => {
+                const updatedTasks = editId ? tasks.map(task => task.taskId === editId ? response.data.task : task) : [...tasks, response.data.task];
+                setTasks(updatedTasks);
 
-        // Atualiza o log de submissão com os valores finais
-        const newSubmission = { TaskName: taskName, TaskDescription: taskDesc };
-        setSubmissionLog(prevLog => [...prevLog, newSubmission]);
+                // Prepara o novo log de submissão
+                const newLogEntry = { TaskName: taskName, TaskDescription: taskDesc };
 
-        clearInputs();
+                // Atualizar o log de submissões com os valores finais
+                setSubmissionLog(prevLog => [...prevLog, newLogEntry]);
+
+                // Limpar os inputs
+                clearInputs();
+            })
+            .catch(error => {
+                console.error("Failed to submit task", error);
+                alert("Failed to save the task!");
+            });
     }
+
+    // Usar useEffect para logar a cada atualização do log de submissões
+    useEffect(() => {
+        if (submissionLog.length > 0) {
+            console.log(submissionLog);
+        }
+    }, [submissionLog]);
+
+
 
     function selectForEdit(taskId: string) {
         const task = tasks.find(task => task.taskId === taskId);
-        if (!task) return;
-        setTaskName(task.taskName);
-        setTaskDesc(task.taskDesc);
-        setEditId(taskId);
+        if (task) {
+            setTaskName(task.taskName);
+            setTaskDesc(task.taskDesc);
+            setEditId(taskId);
+        } else {
+            // Aqui você pode adicionar uma mensagem de erro que será exibida na interface do usuário
+            console.error("Task not found for edit", taskId);
+            alert("Task not found. Please refresh the list or try again."); // Uma simples notificação para o usuário
+        }
     }
 
+
+
     function deleteTask(taskId: string) {
-        setTasks(tasks.filter(task => task.taskId !== taskId));
+        const taskToDelete = tasks.find(task => task.taskId === taskId); // Encontrar a tarefa antes de deletar
+
+        axios.delete(`${apiUrl}/${taskId}`)
+            .then(response => {
+                if (response.status === 200) {
+                    // Se a tarefa for encontrada, logar suas informações
+                    if (taskToDelete) {
+                        console.log("Task deleted successfully:", taskToDelete);
+                    } else {
+                        console.log("No task found with ID:", taskId);
+                    }
+
+                    // Atualizar o estado para remover a tarefa
+                    setTasks(tasks.filter(task => task.taskId !== taskId));
+                } else {
+                    console.error("Response received but task might not have been deleted:", response);
+                }
+            })
+            .catch(error => {
+                console.error(`Failed to delete task ${taskId}`, error);
+                alert("Failed to delete the task!"); // Notifica o usuário em caso de falha
+            });
     }
+
+
 
     function clearInputs() {
         setTaskName('');
@@ -101,7 +158,7 @@ function MenuConteudo() {
             </Row>
             <StyledRow>
                 {tasks.map(task => (
-                    <Col style={{ width: '50%', height: 'auto', display: 'inline-block', alignItems: 'center', justifyContent: 'start' }} key={task.taskId}>
+                    <Col key={task.taskId} style={{ width: '50%', height: 'auto', display: 'inline-block', alignItems: 'center', justifyContent: 'start' }}>
                         <h2>{task.taskName}</h2>
                         <p>{task.taskDesc}</p>
                         <ButtomDefaultStyled onClick={() => deleteTask(task.taskId)}>Apagar</ButtomDefaultStyled>
