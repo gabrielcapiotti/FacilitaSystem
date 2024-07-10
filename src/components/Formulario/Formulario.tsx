@@ -13,29 +13,26 @@ const StyledForm = styled(Form)`
 `;
 export default StyledForm;
 
-// Estilizando os grupos do formulário
 export const FormGroup = styled(Form.Group)`
   margin-bottom: 10px;
 `;
 
-// Estilizando o input do formulário
 export const FormInput = styled(Form.Control)`
-  width: 100%;  // Ajuste conforme necessário
+  width: 100%;  
 `;
 
-// Estilizando o botão
 export const SubmitButton = styled(Button)`
-  width: 100%;  // Para ajustar ao contêiner
-  background-color: #007bff; // Cor primária do Bootstrap
+  width: 100%;  
+  background-color: #007bff; 
   border: none;
   &:hover {
     background-color: #0056b3;
   }
 `;
 
-// Estilizando o select do formulário
+
 export const FormSelect = styled(Form.Select)`
   display: block;
-  width: 100%;  // Ajusta ao contêiner
+  width: 100%;  
 `;
 
