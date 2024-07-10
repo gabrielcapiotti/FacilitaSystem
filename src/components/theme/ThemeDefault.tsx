@@ -22,7 +22,3 @@ function ThemeDefault({ children }: ThemeDefaultProps) {
 }
 
 export default ThemeDefault;
-
-
-
-

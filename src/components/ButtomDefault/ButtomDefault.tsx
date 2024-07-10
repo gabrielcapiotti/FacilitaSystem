@@ -22,7 +22,6 @@ const ConteudoBotao: React.FC<ButtonDefaultProps> = ({ label, as, href, to, onCl
     );
 };
 
-// Componente de Botão Dropdown com react-bootstrap
 const DropdownButton = () => {
     const [showDropdown, setShowDropdown] = useState(false);
 
@@ -45,5 +44,4 @@ const DropdownButton = () => {
     );
 }
 
-// Exportações
-export { ConteudoBotao, DropdownButton };  // Exportações nomeadas para esses componentes
+export { ConteudoBotao, DropdownButton }; 

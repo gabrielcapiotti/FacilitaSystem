@@ -3,12 +3,7 @@ import FooterStyled from "./FooterStyled";
 function FooterConteudo() {
     return (
         <>
-            <FooterStyled>
-
-
-
-
-            </FooterStyled>
+            <FooterStyled />
         </>
     );
 }
