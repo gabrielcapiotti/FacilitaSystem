@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Row, Col, Form } from 'react-bootstrap';
 import Conteudo, { StyledRow } from './MainStyled';
-import StyledForm, { FormGroup, FormInput } from '../Formulario/Formulario';
-import { ButtomDefaultStyled } from '../ButtomDefault/ButtomDefaultStyled';
+import StyledForm, { FormGroup, FormInput } from '../components/Formulario/Formulario';
+import { ButtomDefaultStyled } from '../components/ButtomDefault/ButtomDefaultStyled';
 
 interface TaskType {
     taskId: string;
