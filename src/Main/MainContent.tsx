@@ -4,7 +4,7 @@ import { Row, Col, Form } from 'react-bootstrap';
 import Content, { StyledRow } from './MainStyled';
 import StyledForm, { FormGroup, FormInput } from '../components/Form/Form';
 import { ButtomDefaultStyled } from '../components/ButtomDefault/ButtomDefaultStyled';
-import { ArrayType, TaskType, SubmissionType } from '../types/ArrayTypes';
+import { TaskType, SubmissionType } from '../types/ArrayTypes';
 
 function MenuContent() {
     const [taskName, setTaskName] = useState('');
