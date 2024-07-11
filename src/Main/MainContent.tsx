@@ -62,7 +62,6 @@ function MenuContent() {
 
     useEffect(() => {
         if (submissionLog.length > 0) {
-            console.log(submissionLog);
         }
     }, [submissionLog]);
 
@@ -137,8 +136,8 @@ function MenuContent() {
                     <Col key={task.taskId} style={{ width: '50%', height: 'auto', display: 'inline-block', alignItems: 'center', justifyContent: 'start' }}>
                         <h2>{task.taskName}</h2>
                         <p>{task.taskDesc}</p>
-                        <ButtomDefaultStyled onClick={() => deleteTask(task.taskId)}>Apagar</ButtomDefaultStyled>
-                        <ButtomDefaultStyled onClick={() => selectForEdit(task.taskId)}>Editar</ButtomDefaultStyled>
+                        <ButtomDefaultStyled onClick={() => deleteTask(task.taskId)}>Erase</ButtomDefaultStyled>
+                        <ButtomDefaultStyled onClick={() => selectForEdit(task.taskId)}>Edit</ButtomDefaultStyled>
                     </Col>
                 ))}
             </StyledRow>
