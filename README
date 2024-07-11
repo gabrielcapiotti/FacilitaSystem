@@ -1,0 +1,18 @@
+Sobre o Projeto
+
+O projeto se trata de uma aplicação React gerenciadora de uma lista de tarefas, permitindo usuário, adicionar, editar, atualizar e deletar tarefas interativamente num ambiente simplificado de fácil entendimento. Integra funcionalidades de Front-End e comunicação com servidor Back-End para persistência, tratamento e armazenamento de dados.
+
+Tarefas são gerenciadas diretamente por um formulário web verdadeiramente simples e intuitiva, recebendo a listagem na mesma página na intenção de otimizar espaço de maneira criativa. Entretanto, usuário nesta aplicação consegue inserir o nome e a descrição detalhada para cada tarefa, podendo atualizá-la ou remover as mesmas caso necessário.
+
+Tecnologias Usadas
+Front-End: Começam a partir de React, assim foi possível a construção da interface com os componentes, gerenciamento de estado e as linguagens de marcação como Html e Css. Além do próprio Typescript e o JavaScript para determinar as funcionalidades, conquistando uma experiência de usuário fluida, responsiva e usufruindo do Bootstrap e React-Bootstrap fornecendo a estilização e componentes elaborados prontos para tornar o trabalho eficiente, especialmente durante o uso dos grids e a funcionalidade básica dos botões.
+
+Back-End: Entretanto, para o caso do backeend, foi usado o axios como biblioteca cliente http baseada em promises para realizar as requisições. Assim conseguindo fazer com que o front se comunique com backend, enviando e recebendo dados de forma assíncrona. Entretanto, também foi usado Node.js e Express, um framework para Node.js, usado para criação de rotas de API permitindo operações completas para o CRUD(Create,Read,Update and Delete) nas tarefas. Por fim, foi usado UUID, uma biblioteca para geração de IDs únicos para cada tarefa, garantindo que sejam individuais e se tornem identificáveis e manipuladas separadamente.
+
+Como usar?
+
+1. Clone o repositório para sua máquina local.
+2. Instale as dependências usando `npm install` ou `yarn install`.
+3. Inicie o servidor backend.
+4. Rode o projeto React com `npm run dev`.
+5. Acesse `http://localhost:3000`.

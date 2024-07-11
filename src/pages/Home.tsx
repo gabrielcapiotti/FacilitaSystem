@@ -1,13 +1,13 @@
-import FooterConteudo from "../Footer/FooterConteudo";
-import HeaderConteudo from "../Header/HeaderConteudo";
-import MenuConteudo from "../Main/MainConteudo";
+import FooterContent from "../Footer/FooterContent";
+import HeaderContent from "../Header/HeaderContent";
+import MenuContent from "../Main/MainContent";
 
 function Home() {
     return (
         <>
-            <HeaderConteudo />
-            <MenuConteudo />
-            <FooterConteudo />
+            <HeaderContent />
+            <MenuContent />
+            <FooterContent />
         </>
     )
 }

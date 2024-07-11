@@ -1,22 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Row, Col, Form } from 'react-bootstrap';
-import Conteudo, { StyledRow } from './MainStyled';
-import StyledForm, { FormGroup, FormInput } from '../components/Formulario/Formulario';
+import Content, { StyledRow } from './MainStyled';
+import StyledForm, { FormGroup, FormInput } from '../components/Form/Form';
 import { ButtomDefaultStyled } from '../components/ButtomDefault/ButtomDefaultStyled';
+import { ArrayType, TaskType, SubmissionType } from '../types/ArrayTypes';
 
-interface TaskType {
-    taskId: string;
-    taskName: string;
-    taskDesc: string;
-}
-
-interface SubmissionType {
-    TaskName: string;
-    TaskDescription: string;
-}
-
-function MenuConteudo() {
+function MenuContent() {
     const [taskName, setTaskName] = useState('');
     const [taskDesc, setTaskDesc] = useState('');
     const [tasks, setTasks] = useState<TaskType[]>([]);
@@ -118,27 +108,27 @@ function MenuConteudo() {
     }
 
     return (
-        <Conteudo>
+        <Content>
             <Row className='left' style={{ backgroundColor: "#E6E8FA", height: '100%', width: '50%' }}>
                 <Col>
                     <StyledForm onSubmit={createTask}>
                         <Row className="mb-3">
                             <Col md={6}>
-                                <h1>{editId ? 'Editar Tarefa' : 'Lista de Tarefas'}</h1>
+                                <h1>{editId ? 'Edit Task' : 'Task List'}</h1>
                                 <FormGroup controlId="formGridName">
-                                    <Form.Label>Título</Form.Label>
-                                    <FormInput type="text" placeholder="Título da Tarefa" value={taskName} onChange={handleNameChange} />
+                                    <Form.Label>Title</Form.Label>
+                                    <FormInput type="text" placeholder="Task Title" value={taskName} onChange={handleNameChange} />
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup controlId="formGridDescription">
-                                    <Form.Label>Descrição</Form.Label>
-                                    <FormInput type="text" placeholder="Descreva a Tarefa" value={taskDesc} onChange={handleDescChange} />
+                                    <Form.Label>Description</Form.Label>
+                                    <FormInput type="text" placeholder="Describe the Task" value={taskDesc} onChange={handleDescChange} />
                                 </FormGroup>
                             </Col>
                         </Row>
-                        <ButtomDefaultStyled type="submit">{editId ? 'Atualizar' : 'Salvar'}</ButtomDefaultStyled>
-                        {editId && <ButtomDefaultStyled onClick={clearInputs}>Cancelar</ButtomDefaultStyled>}
+                        <ButtomDefaultStyled type="submit">{editId ? 'To Update' : 'To Save'}</ButtomDefaultStyled>
+                        {editId && <ButtomDefaultStyled onClick={clearInputs}>Cancel</ButtomDefaultStyled>}
                     </StyledForm>
                 </Col>
             </Row>
@@ -152,8 +142,8 @@ function MenuConteudo() {
                     </Col>
                 ))}
             </StyledRow>
-        </Conteudo>
+        </Content>
     );
 }
 
-export default MenuConteudo;
+export default MenuContent;

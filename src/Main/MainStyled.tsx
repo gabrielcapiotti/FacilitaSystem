@@ -1,7 +1,7 @@
 import { Row } from "react-bootstrap";
 import styled from "styled-components";
 
-const Conteudo = styled.main`
+const Content = styled.main`
     display: flex;
     width: 100%;
     height: 341px;
@@ -12,7 +12,7 @@ const Conteudo = styled.main`
     align-items: center;
 `;
 
-export default Conteudo;
+export default Content;
 
 export const StyledRow = styled(Row)`
   background-color: whitesmoke;

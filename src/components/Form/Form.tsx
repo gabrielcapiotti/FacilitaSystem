@@ -1,7 +1,5 @@
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import styled from "styled-components";
-
-
 
 const StyledForm = styled(Form)`
   flex-direction: column;
@@ -21,18 +19,6 @@ export const FormInput = styled(Form.Control)`
   width: 100%;  
 `;
 
-export const SubmitButton = styled(Button)`
-  width: 100%;  
-  background-color: #007bff; 
-  border: none;
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
 
 
-export const FormSelect = styled(Form.Select)`
-  display: block;
-  width: 100%;  
-`;
 

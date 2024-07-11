@@ -1,6 +1,6 @@
 import FooterStyled from "./FooterStyled";
 
-function FooterConteudo() {
+function FooterContent() {
     return (
         <>
             <FooterStyled />
@@ -8,4 +8,4 @@ function FooterConteudo() {
     );
 }
 
-export default FooterConteudo;
+export default FooterContent;
